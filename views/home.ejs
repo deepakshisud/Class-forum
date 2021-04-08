@@ -1,2 +1,6 @@
 <% layout('boilerplate') %> 
 <h1>Dashboard comes here</h1>
+<% for( let post of posts ) { %>
+<h3><%= post.heading  %> </h3>
+<p><%=post.text  %> </p>
+<% } %>
