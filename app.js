@@ -25,11 +25,18 @@ app.engine('ejs',ejsMate);
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
-app.get('/', async(req, res) => {
+app.get('/home', async(req, res) => {
     const posts = await Post.find({});
     res.render('home', {posts});
 })
 
+app.get('/new', (req, res) => {
+    res.render('new');
+})
+
+app.post('/new', async(req, res) => {
+    res.redirect('/home');
+})
 app.listen(3000, () => {
     console.log("connected on port 3000");
 })
