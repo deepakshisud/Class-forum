@@ -2,4 +2,28 @@
 <div class="container-fluid">
     <h3><%= post.heading  %> </h3>
     <p><%=post.text  %> </p>    
+
+    <div class="row">
+        <% if(currentUser) { %> 
+        <h4>Your response</h4>
+        <form class="mb-3 validated-form" action="/<%=post._id%>/reviews" method="POST" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="body">Reviews</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                Looks good!
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+        <% } %> 
+        <% for(let review of post.reviews)  { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= review.author.username %></h5>
+                <p class="card-text"><%= review.body %></p>
+              </div>
+            </div>
+    
+          <% } %> 
+    </div>
 </div>

@@ -8,6 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/users');
 const Post = require('./models/posts');
+const Review = require('./models/reviews');
 const session = require('express-session');
 const {isLoggedIn} = require('./middleware');
 
@@ -105,11 +106,27 @@ app.post('/new', async(req, res) => {
 })
 
 app.get('/:id', async(req, res) => {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');;
     if(!post) {
         return res.redirect('/home');
     }
     res.render('show', {post});
+})
+
+app.post('/:id/reviews', async(req, res) => {
+    const post = await Post.findById(req.params.id);
+    const review = new Review(req.body.review);
+    review.author = req.user._id;
+    post.reviews.push(review);
+    await review.save();
+    await post.save();
+    console.log(review);
+    res.redirect(`/${post._id}`);
 })
 
 app.listen(3000, () => {
