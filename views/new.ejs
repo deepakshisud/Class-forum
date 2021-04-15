@@ -1,5 +1,7 @@
 <% layout('boilerplate') %> 
-<form method="POST" novalidate class="validate-form">
+<div class="container mt-5">
+  <h1>Create a new discussion</h1>
+  <form method="POST" novalidate class="validate-form">
     <div class="form-group">
       <label for="text">Heading</label>
       <input type="text" class="form-control" name="post[heading]" id="heading">
@@ -14,5 +16,6 @@
         Looks good!
       </div>
     </div>
-    <button class="btn btn-primary">POST</button>
+    <button class="btn btn-secondary">POST</button>
 </form>
+</div>

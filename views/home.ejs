@@ -1,8 +1,19 @@
 <% layout('boilerplate') %> 
-<h1>All posts</h1>
-<a href="/new">Create a new post</a>
-<% for( let post of posts ) { %>
-<h3><%= post.heading  %> </h3>
-<p><%=post.text  %> </p>
-<a href="/<%= post._id %>">View</a>
-<% } %>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h1 class="display-4">Class Forum</h1>
+      <p class="lead">An integrated tab to discuss all your class related quries and post your doubts!</p>
+      <a href="/new" class="btn btn-secondary">New question</a>
+    </div>
+  </div>
+<div class="container">
+    <h1>All questions</h1>
+    <hr>
+    <% for( let post of posts ) { %>
+        <div class="my-3" style="border-left: 5px solid gray; padding-left: 3%;">
+            <h3><%= post.heading  %> </h3>
+            <p><%=post.text  %> </p>
+        </div>
+        <a href="/<%= post._id%>" class="btn btn-secondary ml-4">View</a>
+    <% } %>
+</div>

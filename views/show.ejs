@@ -1,25 +1,24 @@
 <% layout('boilerplate') %> 
-<div class="container-fluid">
-    <h3><%= post.heading  %> </h3>
-    <p><%=post.text  %> </p>    
-
-    <div class="row">
+<div class="container mt-5">
+    <h3 class="h1"><%= post.heading  %> </h3>
+    <p style="border-left: 5px solid gray; padding-left: 3%; font-size: larger;"><%=post.text  %> </p>    
+    <div class="container mt-4">
         <% if(currentUser) { %> 
         <h4>Your response</h4>
         <form class="mb-3 validated-form" action="/<%=post._id%>/reviews" method="POST" novalidate>
             <div class="mb-3">
-                <label class="form-label" for="body">Reviews</label>
                 <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                 <div class="valid-feedback">
                 Looks good!
             </div>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-secondary mt-3">Submit</button>
         </form>
         <% } %> 
+        <h3 class="h3 mt-5">Responses</h3>
         <% for(let review of post.reviews)  { %>
-            <div class="card mb-3">
+            <div class="card mb-3 py-0" style="border-left: 5px solid gray; padding-left: 3%; font-size: larger;">
               <div class="card-body">
-                <h5 class="card-title"><%= review.author.username %></h5>
+                <h3 class="card-title"><%= review.author.username %></h5>
                 <p class="card-text"><%= review.body %></p>
               </div>
             </div>
