@@ -9,7 +9,11 @@ const PostSchema = new Schema({
     text: {
         required: true,
         type: String
-    }
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
 });
 
 module.exports = mongoose.model('Post', PostSchema);

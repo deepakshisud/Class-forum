@@ -3,4 +3,5 @@
 <% for( let post of posts ) { %>
 <h3><%= post.heading  %> </h3>
 <p><%=post.text  %> </p>
+<a href="/<%= post._id %>">View</a>
 <% } %>
