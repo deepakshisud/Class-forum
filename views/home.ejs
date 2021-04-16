@@ -9,11 +9,11 @@
 <div class="container">
     <h1>All questions</h1>
     <hr>
-    <% for( let post of posts ) { %>
+    <% for( let i = posts.length - 1; i >=0 ; i--) { %>
         <div class="my-3" style="border-left: 5px solid gray; padding-left: 3%;">
-            <h3><%= post.heading  %> </h3>
-            <p><%=post.text  %> </p>
+            <h3><%= posts[i].heading  %> </h3>
+            <p><%=posts[i].text  %> </p>
         </div>
-        <a href="/<%= post._id%>" class="btn btn-secondary ml-4">View</a>
+        <a href="/<%= posts[i]._id%>" class="btn btn-secondary ml-4">View</a>
     <% } %>
 </div>
